@@ -22,20 +22,31 @@ async function init() {
     statusEl.textContent = 'Cargando modelos de IA...';
 
     try {
-        // Intentar usar WebGL, si falla usar CPU
-        try {
-            await tf.setBackend('webgl');
-            await tf.ready();
-        } catch (e) {
-            console.warn('WebGL no disponible, usando CPU...');
-            await tf.setBackend('cpu');
-            await tf.ready();
+        // Verificar que face-api.js cargó correctamente
+        if (typeof faceapi === 'undefined' || !faceapi.nets) {
+            throw new Error('face-api.js no se cargó correctamente. Revisa tu conexión.');
         }
 
-        const MODEL_URL = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights';
+        console.log('face-api.js cargado correctamente, versión:', faceapi.version || 'desconocida');
 
+        // Configurar backend de TensorFlow
+        try {
+            await faceapi.tf.setBackend('webgl');
+            await faceapi.tf.ready();
+            console.log('Usando backend WebGL');
+        } catch (e) {
+            console.warn('WebGL no disponible, intentando CPU...');
+            await faceapi.tf.setBackend('cpu');
+            await faceapi.tf.ready();
+            console.log('Usando backend CPU');
+        }
+
+        const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.14/model';
+
+        statusEl.textContent = 'Descargando modelo de detección...';
         await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
-        await faceapi.nets.faceExpressions.loadFromUri(MODEL_URL);
+        statusEl.textContent = 'Descargando modelo de expresiones...';
+        await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
 
         statusEl.textContent = 'Modelos cargados. Iniciando cámara...';
         await startCamera();
