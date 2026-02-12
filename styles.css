@@ -1,0 +1,691 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(220, 90, 130, 0.18), transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(220, 90, 130, 0.12), transparent 55%),
+        linear-gradient(180deg, #05040a 0%, #0b0b14 100%);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.glass {
+    height: 780px;
+    width: 860px;
+    background: rgba(15, 22, 38, 0.72);
+    border-radius: 430px 430px 30px 30px;
+    border: 2px solid rgba(160, 175, 200, 0.35);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(10, 10, 20, 0.6);
+}
+
+.glass:before {
+    content: "";
+    height: 34px;
+    width: 34px;
+    transform-origin: center;
+    border: 16px solid rgba(160, 175, 200, 0.5);
+    border-radius: 100%;
+    position: absolute;
+    left: 415px;
+    top: -58px;
+}
+
+.glass:after {
+    content: "";
+    position: absolute;
+    height: 14px;
+    width: 860px;
+    background: #7c1f35;
+    bottom: 0;
+    left: 0;
+}
+
+
+.shine {
+    width: 20px;
+    height: 320px;
+    background: rgba(255, 255, 255, 0.7);
+    opacity: 0.2;
+    position: absolute;
+    left: 76%;
+    top: 140px;
+    border-radius: 100px;
+    z-index: 10;
+    animation: glassShine 6s ease-in-out infinite;
+}
+
+.shine:before {
+    content: "";
+    width: 20px;
+    height: 46px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.55);
+    top: 340px;
+    border-radius: 100px;
+}
+
+.bouquet {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 620px;
+    height: 380px;
+}
+
+.peonia,
+.tulipan,
+.lirio {
+    position: absolute;
+    bottom: 0;
+    animation: flowerSway 5s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+.peonia {
+    left: 100px;
+    animation-delay: 0s;
+}
+
+.tulipan {
+    left: 250px;
+    animation-delay: 0.8s;
+}
+
+.lirio {
+    left: 460px;
+    animation-delay: 1.6s;
+}
+
+.peonia-stem,
+.tulipan-stem,
+.lirio-stem {
+    position: absolute;
+    width: 12px;
+    height: 260px;
+    background: linear-gradient(to bottom, #1f5f2a, #0c3a17);
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+}
+
+/* === PEONIA LEAVES === */
+.peonia-leaf {
+    position: absolute;
+    width: 45px;
+    height: 35px;
+    background: linear-gradient(135deg, #2d8a3e, #1a6b2a);
+    box-shadow: inset 2px 2px 4px rgba(10, 60, 20, 0.4);
+}
+
+.peonia-leaf-1 {
+    left: -36px;
+    bottom: 155px;
+    border-radius: 40px 4px 40px 4px;
+    transform: rotate(-30deg);
+    transform-origin: right center;
+}
+
+.peonia-leaf-2 {
+    left: 5px;
+    bottom: 185px;
+    border-radius: 4px 40px 4px 40px;
+    transform: rotate(30deg);
+    transform-origin: left center;
+}
+
+/* === TULIPAN LEAVES === */
+.tulipan-leaf {
+    position: absolute;
+    width: 35px;
+    height: 70px;
+    background: linear-gradient(to top, #1a6b2a, #2d8a3e);
+    box-shadow: inset 2px 2px 4px rgba(10, 60, 20, 0.4);
+}
+
+.tulipan-leaf-1 {
+    left: -26px;
+    bottom: 85px;
+    border-radius: 50px 6px 50px 6px;
+    transform: rotate(-14deg);
+    transform-origin: bottom right;
+}
+
+.tulipan-leaf-2 {
+    left: 6px;
+    bottom: 105px;
+    border-radius: 6px 50px 6px 50px;
+    transform: rotate(14deg);
+    transform-origin: bottom left;
+}
+
+/* === LIRIO LEAVES === */
+.lirio-leaf {
+    position: absolute;
+    width: 30px;
+    height: 80px;
+    background: linear-gradient(to top, #1a6b2a, #3a9e4e);
+    box-shadow: inset 2px 2px 4px rgba(10, 60, 20, 0.35);
+}
+
+.lirio-leaf-1 {
+    left: -22px;
+    bottom: 85px;
+    border-radius: 40px 5px 40px 5px;
+    transform: rotate(-14deg);
+    transform-origin: bottom right;
+}
+
+.lirio-leaf-2 {
+    left: 6px;
+    bottom: 110px;
+    border-radius: 5px 40px 5px 40px;
+    transform: rotate(14deg);
+    transform-origin: bottom left;
+}
+
+/* === FLOWER NAMES === */
+.flower-name {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f5dde6;
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    z-index: 15;
+    padding: 5px 18px;
+    background: linear-gradient(135deg, rgba(160, 50, 80, 0.5), rgba(120, 30, 60, 0.6));
+    border: 1px solid rgba(240, 170, 190, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 12px rgba(180, 60, 90, 0.3);
+    animation: nameGlow 3s ease-in-out infinite;
+}
+
+.flower-name::before,
+.flower-name::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 8px;
+    background: rgba(200, 80, 120, 0.45);
+    border-radius: 0 0 20px 20px;
+}
+
+.flower-name::before {
+    left: -10px;
+    transform: translateY(-50%) rotate(30deg);
+}
+
+.flower-name::after {
+    right: -10px;
+    transform: translateY(-50%) rotate(-30deg);
+}
+
+@keyframes nameGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(220, 120, 160, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(220, 120, 160, 0.7);
+    }
+}
+
+.peonia-petals,
+.tulipan-petals,
+.lirio-petals {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 220px;
+    animation: bloomPulse 4.5s ease-in-out infinite;
+}
+
+.peonia-petals {
+    width: 180px;
+    height: 160px;
+}
+
+.peonia-petal {
+    position: absolute;
+    width: 90px;
+    height: 70px;
+    background: radial-gradient(circle at 30% 30%, #f8c8d6, #e59ab1 70%, #d7869c 100%);
+    border-radius: 80px 80px 50px 50px;
+    box-shadow: 0 0 18px rgba(246, 175, 193, 0.5);
+}
+
+.peonia-petal:nth-child(2) {
+    left: 20px;
+    top: 10px;
+    transform: rotate(-12deg);
+}
+
+.peonia-petal:nth-child(3) {
+    left: 70px;
+    top: 5px;
+    transform: rotate(8deg);
+}
+
+.peonia-petal:nth-child(4) {
+    left: 40px;
+    top: 40px;
+    transform: rotate(18deg);
+}
+
+.peonia-petal:nth-child(5) {
+    left: 90px;
+    top: 40px;
+    transform: rotate(-8deg);
+}
+
+.peonia-petal:nth-child(6) {
+    left: 10px;
+    top: 55px;
+    transform: rotate(10deg);
+}
+
+.peonia-petal:nth-child(7) {
+    left: 100px;
+    top: 65px;
+    transform: rotate(-15deg);
+}
+
+.peonia-petal:nth-child(8) {
+    left: 55px;
+    top: 75px;
+    transform: rotate(5deg);
+}
+
+.peonia-petal:nth-child(9) {
+    left: 20px;
+    top: 85px;
+    transform: rotate(-8deg);
+}
+
+.peonia-inner-petal {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    background: radial-gradient(circle at 50% 50%, #f9d4e0, #e9a8bb 70%);
+    border-radius: 60px 60px 40px 40px;
+    box-shadow: 0 0 10px rgba(246, 175, 193, 0.4);
+}
+
+.peonia-inner-petal:nth-child(10) {
+    left: 55px;
+    top: 50px;
+    transform: rotate(-10deg);
+}
+
+.peonia-inner-petal:nth-child(11) {
+    left: 75px;
+    top: 60px;
+    transform: rotate(12deg);
+}
+
+.peonia-inner-petal:nth-child(12) {
+    left: 45px;
+    top: 65px;
+    transform: rotate(8deg);
+}
+
+.peonia-inner-petal:nth-child(13) {
+    left: 65px;
+    top: 80px;
+    transform: rotate(-6deg);
+}
+
+.peonia-center {
+    position: absolute;
+    width: 40px;
+    height: 32px;
+    background: radial-gradient(circle, #f6c1d2 0%, #e48aa9 80%);
+    border-radius: 50%;
+    left: 70px;
+    top: 65px;
+    box-shadow: 0 0 6px rgba(246, 175, 193, 0.6);
+}
+
+.tulipan-petals,
+.lirio-petals,
+.peonia-petals {
+    filter: drop-shadow(0 6px 18px rgba(226, 140, 170, 0.25));
+}
+
+.tulipan-petals {
+    width: 150px;
+    height: 160px;
+}
+
+.tulipan-petal {
+    position: absolute;
+    width: 70px;
+    height: 120px;
+    background: linear-gradient(to top, #e05a7a, #f0a1b6 65%, #f6c7d4 100%);
+    border-radius: 80px 80px 40px 40px;
+    box-shadow: 0 0 16px rgba(242, 160, 183, 0.6);
+}
+
+.tulipan-petal:nth-child(1) {
+    left: 40px;
+    top: 10px;
+    transform: rotate(-6deg);
+}
+
+.tulipan-petal:nth-child(2) {
+    left: 60px;
+    top: 5px;
+    transform: rotate(8deg);
+}
+
+.tulipan-petal:nth-child(3) {
+    left: 20px;
+    top: 15px;
+    transform: rotate(-12deg);
+}
+
+.tulipan-petal:nth-child(4) {
+    left: 80px;
+    top: 20px;
+    transform: rotate(12deg);
+}
+
+.tulipan-petal:nth-child(5) {
+    left: 50px;
+    top: 20px;
+    transform: rotate(2deg);
+}
+
+.tulipan-petal:nth-child(6) {
+    left: 35px;
+    top: 30px;
+    transform: rotate(-2deg);
+    height: 110px;
+}
+
+.lirio-petals {
+    width: 200px;
+    height: 200px;
+}
+
+.lirio-petal {
+    position: absolute;
+    width: 90px;
+    height: 140px;
+    background: radial-gradient(circle at 50% 20%, #fce4ef 0%, #f4a1c3 55%, #df6f9d 100%);
+    border-radius: 80px 80px 30px 30px;
+    box-shadow: 0 0 20px rgba(238, 144, 177, 0.6);
+}
+
+.lirio-petal:nth-child(1) {
+    left: 55px;
+    top: 0px;
+    transform: rotate(0deg);
+}
+
+.lirio-petal:nth-child(2) {
+    left: 10px;
+    top: 35px;
+    transform: rotate(-35deg);
+}
+
+.lirio-petal:nth-child(3) {
+    left: 100px;
+    top: 35px;
+    transform: rotate(35deg);
+}
+
+.lirio-petal:nth-child(4) {
+    left: 20px;
+    top: 80px;
+    transform: rotate(-10deg);
+}
+
+.lirio-petal:nth-child(5) {
+    left: 90px;
+    top: 80px;
+    transform: rotate(10deg);
+}
+
+.lirio-petal:nth-child(6) {
+    left: 55px;
+    top: 60px;
+    transform: rotate(180deg);
+    height: 120px;
+}
+
+.lirio-stamen {
+    position: absolute;
+    width: 6px;
+    height: 70px;
+    background: #c33a5c;
+    border-radius: 10px;
+    left: 95px;
+    top: 55px;
+    transform-origin: bottom;
+}
+
+.lirio-stamen:nth-child(7) {
+    transform: rotate(-18deg);
+}
+
+.lirio-stamen:nth-child(8) {
+    transform: rotate(0deg);
+}
+
+.lirio-stamen:nth-child(9) {
+    transform: rotate(18deg);
+}
+
+@keyframes flowerSway {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-1.5deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1.5deg);
+    }
+}
+
+@keyframes bloomPulse {
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.03);
+    }
+}
+
+@keyframes glassShine {
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.35;
+    }
+}
+
+.pot {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    height: 120px;
+    background: linear-gradient(to bottom, #3a1c14 0%, #1f0f0b 100%);
+    border-radius: 16px 16px 28px 28px;
+    box-shadow: inset 0 8px 12px rgba(255, 255, 255, 0.08);
+}
+
+.pot:before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    width: 556px;
+    height: 28px;
+    background: linear-gradient(to bottom, #4b241a 0%, #2b1510 100%);
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(10, 10, 20, 0.35);
+}
+
+.pot:after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 480px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+/* ========================================
+   CÁMARA
+   ======================================== */
+.camera-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 260px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(10, 10, 20, 0.85);
+    border: 2px solid rgba(200, 120, 160, 0.35);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.camera-box video {
+    width: 100%;
+    display: block;
+    border-radius: 14px 14px 0 0;
+    transform: scaleX(-1);
+}
+
+.camera-box canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    transform: scaleX(-1);
+}
+
+#camera-status {
+    display: block;
+    text-align: center;
+    color: rgba(200, 180, 200, 0.8);
+    font-family: 'Georgia', serif;
+    font-size: 11px;
+    padding: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* ========================================
+   POPUP MEME
+   ======================================== */
+.meme-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 10, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.meme-popup.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.meme-popup-content {
+    background: linear-gradient(135deg, #1a1225 0%, #251530 100%);
+    border: 2px solid rgba(220, 120, 170, 0.4);
+    border-radius: 24px;
+    padding: 30px 36px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(180, 40, 80, 0.3);
+    animation: popupBounce 0.5s ease;
+}
+
+.meme-popup.show .meme-popup-content {
+    animation: popupBounce 0.5s ease;
+}
+
+#meme-message {
+    color: #f5d0e0;
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    margin: 0 0 20px;
+    letter-spacing: 1px;
+}
+
+#meme-image {
+    display: none;
+}
+
+#sad-video {
+    width: 100%;
+    max-height: 340px;
+    object-fit: contain;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.video-hint {
+    color: rgba(220, 180, 200, 0.7);
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+#close-meme {
+    display: none;
+}
+
+@keyframes popupBounce {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

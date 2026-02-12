@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Un ramo para ti</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="glass">
+            <div class="shine"></div>
+            <div class="bouquet">
+                <div class="peonia">
+                    <span class="flower-name">Peonía</span>
+                    <div class="peonia-stem"></div>
+                    <div class="peonia-leaf peonia-leaf-1"></div>
+                    <div class="peonia-leaf peonia-leaf-2"></div>
+                    <div class="peonia-petals">
+                        <div class="peonia-center"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-petal"></div>
+                        <div class="peonia-inner-petal"></div>
+                        <div class="peonia-inner-petal"></div>
+                        <div class="peonia-inner-petal"></div>
+                        <div class="peonia-inner-petal"></div>
+                    </div>
+                </div>
+
+                <div class="tulipan">
+                    <span class="flower-name">Tulipán</span>
+                    <div class="tulipan-stem"></div>
+                    <div class="tulipan-leaf tulipan-leaf-1"></div>
+                    <div class="tulipan-leaf tulipan-leaf-2"></div>
+                    <div class="tulipan-petals">
+                        <div class="tulipan-petal"></div>
+                        <div class="tulipan-petal"></div>
+                        <div class="tulipan-petal"></div>
+                        <div class="tulipan-petal"></div>
+                        <div class="tulipan-petal"></div>
+                        <div class="tulipan-petal"></div>
+                    </div>
+                </div>
+
+                <div class="lirio">
+                    <span class="flower-name">Lirio</span>
+                    <div class="lirio-stem"></div>
+                    <div class="lirio-leaf lirio-leaf-1"></div>
+                    <div class="lirio-leaf lirio-leaf-2"></div>
+                    <div class="lirio-petals">
+                        <div class="lirio-petal"></div>
+                        <div class="lirio-petal"></div>
+                        <div class="lirio-petal"></div>
+                        <div class="lirio-petal"></div>
+                        <div class="lirio-petal"></div>
+                        <div class="lirio-petal"></div>
+                        <div class="lirio-stamen"></div>
+                        <div class="lirio-stamen"></div>
+                        <div class="lirio-stamen"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pot"></div>
+        </div>
+    </div>
+
+    <!-- Cámara -->
+    <div class="camera-box">
+        <video id="camera-feed" autoplay muted playsinline></video>
+        <canvas id="overlay-canvas"></canvas>
+        <span id="camera-status">Iniciando...</span>
+    </div>
+
+    <!-- Popup de Video Anti-Tristeza -->
+    <div id="meme-popup" class="meme-popup">
+        <div class="meme-popup-content">
+            <p id="meme-message">¡No estés triste! Mira esto 🌸</p>
+            <video id="sad-video" loop playsinline>
+                <source src="assets/Fuera_depresion.mp4" type="video/mp4">
+            </video>
+            <p class="video-hint">Se detendrá cuando sonrías 😊</p>
+        </div>
+    </div>
+</body>
+
+</html>
