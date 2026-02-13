@@ -9,9 +9,14 @@ let canvas;
 let sadVideo;
 let sadnessTimeout = null;
 let isShowingVideo = false;
+let isShowingCinnamonroll = false;
 let detectionInterval = null;
 let happyFrames = 0;
+let smileFrames = 0;
+let noSmileFrames = 0;
 const HAPPY_FRAMES_NEEDED = 6; // ~3s (6 frames × 500ms)
+const SMILE_FRAMES_NEEDED = 3; // ~1.5s para mostrar Cinnamonroll
+const NO_SMILE_FRAMES_NEEDED = 6; // ~3s para ocultar Cinnamonroll
 
 async function init() {
     video = document.getElementById('camera-feed');
@@ -99,11 +104,29 @@ async function detectEmotion() {
         if (detection) {
             const expressions = detection.expressions;
             const sadness = expressions.sad || 0;
+            const happiness = expressions.happy || 0;
 
             // Dibujar indicador de emoción
             drawEmotionIndicator(ctx, expressions);
 
-            // Si la tristeza es mayor al 50%
+            // === SONRISA → Cinnamonroll + brillo ===
+            if (happiness > 0.5) {
+                noSmileFrames = 0;
+                smileFrames++;
+                if (smileFrames >= SMILE_FRAMES_NEEDED && !isShowingCinnamonroll) {
+                    showCinnamonroll();
+                }
+            } else {
+                smileFrames = 0;
+                if (isShowingCinnamonroll) {
+                    noSmileFrames++;
+                    if (noSmileFrames >= NO_SMILE_FRAMES_NEEDED) {
+                        hideCinnamonroll();
+                    }
+                }
+            }
+
+            // === TRISTEZA → Video ===
             if (sadness > 0.5 && !isShowingVideo) {
                 happyFrames = 0;
                 if (!sadnessTimeout) {
@@ -159,6 +182,40 @@ function drawEmotionIndicator(ctx, expressions) {
     ctx.fillRect(10, 28, barWidth * sadPercent, 6);
 }
 
+function showCinnamonroll() {
+    isShowingCinnamonroll = true;
+    const cinna = document.getElementById('cinnamonroll');
+    const glass = document.querySelector('.glass');
+    if (cinna) {
+        cinna.classList.remove('float', 'done');
+        cinna.classList.add('show');
+        // Dibujar Cinnamonroll usando Python/Brython
+        if (typeof window.drawCinnamonrollPython === 'function') {
+            window.drawCinnamonrollPython();
+            // Cuando termine de dibujar, flotar y mostrar mensaje
+            setTimeout(() => {
+                cinna.classList.add('float', 'done');
+            }, 100);
+        }
+    }
+    if (glass) glass.classList.add('smile-glow');
+}
+
+function hideCinnamonroll() {
+    isShowingCinnamonroll = false;
+    noSmileFrames = 0;
+    const cinna = document.getElementById('cinnamonroll');
+    const glass = document.querySelector('.glass');
+    if (cinna) {
+        cinna.classList.remove('show', 'float', 'done');
+        // Limpiar canvas usando Python/Brython
+        if (typeof window.clearCinnamonrollPython === 'function') {
+            setTimeout(() => window.clearCinnamonrollPython(), 600);
+        }
+    }
+    if (glass) glass.classList.remove('smile-glow');
+}
+
 function showVideoPopup() {
     isShowingVideo = true;
     happyFrames = 0;
@@ -197,3 +254,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Iniciar la app
     init();
 });
+
+// ============================================
+// BOTONES DE PRUEBA
+// ============================================
+function testHappy() {
+    if (isShowingVideo) closeVideoPopup();
+    if (!isShowingCinnamonroll) {
+        showCinnamonroll();
+    } else {
+        hideCinnamonroll();
+    }
+}
+
+function testSad() {
+    if (isShowingCinnamonroll) hideCinnamonroll();
+    if (!isShowingVideo) {
+        showVideoPopup();
+    } else {
+        closeVideoPopup();
+    }
+}

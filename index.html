@@ -7,10 +7,15 @@
     <title>Un ramo para ti</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.14/dist/face-api.js"></script>
+    <!-- Brython para ejecutar Python en el navegador -->
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.3/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.3/brython_stdlib.js"></script>
     <script defer src="script.js"></script>
 </head>
 
-<body>
+<body onload="brython()">
+    <!-- Script Python para Cinnamonroll -->
+    <script type="text/python" src="cinnamonroll_brython.py"></script>
     <div class="container">
         <div class="glass">
             <div class="shine"></div>
@@ -79,6 +84,18 @@
         <video id="camera-feed" autoplay muted playsinline></video>
         <canvas id="overlay-canvas"></canvas>
         <span id="camera-status">Iniciando...</span>
+    </div>
+
+    <!-- Cinnamonroll que aparece al sonreír (estilo turtle) -->
+    <div id="cinnamonroll" class="cinnamonroll">
+        <canvas id="cinna-canvas" width="500" height="500"></canvas>
+        <p class="cinnamonroll-msg">¡Me alegra verte sonreír! 💕</p>
+    </div>
+
+    <!-- Botones de prueba -->
+    <div class="test-buttons">
+        <button id="btn-happy" onclick="testHappy()">😊 Felicidad</button>
+        <button id="btn-sad" onclick="testSad()">😢 Tristeza</button>
     </div>
 
     <!-- Popup de Video Anti-Tristeza -->
