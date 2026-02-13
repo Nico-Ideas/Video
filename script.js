@@ -17,9 +17,21 @@ let isMusicPlaying = false;
 let happyFrames = 0;
 let smileFrames = 0;
 let noSmileFrames = 0;
+let phraseAudio = null;
+let phraseBag = [];
+let hasPlayedFirstPhrase = false;
+let lastPhraseIndex = -1;
 const HAPPY_FRAMES_NEEDED = 6; // ~3s (6 frames × 500ms)
 const SMILE_FRAMES_NEEDED = 3; // ~1.5s para mostrar Cinnamonroll
 const NO_SMILE_FRAMES_NEEDED = 6; // ~3s para ocultar Cinnamonroll
+
+const phraseFiles = [
+    'assets/Frases/Frase_1.mp3',
+    'assets/Frases/Frase_2.mp3',
+    'assets/Frases/Frase_3.mp3',
+    'assets/Frases/Frase_4.mp3',
+    'assets/Frases/Frase_5.mp3'
+];
 
 async function init() {
     video = document.getElementById('camera-feed');
@@ -251,8 +263,61 @@ function closeVideoPopup() {
     sadnessTimeout = null;
 }
 
+function shuffleArray(items) {
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+}
+
+function getNextPhraseIndex() {
+    if (!hasPlayedFirstPhrase) {
+        hasPlayedFirstPhrase = true;
+        lastPhraseIndex = 0;
+        return 0;
+    }
+
+    if (phraseBag.length === 0) {
+        phraseBag = phraseFiles.map((_, index) => index);
+        shuffleArray(phraseBag);
+
+        if (phraseBag[0] === lastPhraseIndex && phraseBag.length > 1) {
+            [phraseBag[0], phraseBag[1]] = [phraseBag[1], phraseBag[0]];
+        }
+    }
+
+    const nextIndex = phraseBag.shift();
+    lastPhraseIndex = nextIndex;
+    return nextIndex;
+}
+
+function playNextPhrase() {
+    const nextIndex = getNextPhraseIndex();
+    const nextSrc = phraseFiles[nextIndex];
+
+    if (!nextSrc || !phraseAudio) return;
+
+    phraseAudio.pause();
+    phraseAudio.currentTime = 0;
+    phraseAudio.src = nextSrc;
+    phraseAudio.play().catch((err) => {
+        console.warn('No se pudo reproducir frase:', err);
+    });
+}
+
 // Cerrar popup con Escape
 document.addEventListener('DOMContentLoaded', () => {
+    phraseAudio = new Audio();
+    phraseAudio.preload = 'auto';
+
+    phraseBag = phraseFiles.map((_, index) => index).filter((index) => index !== 0);
+    shuffleArray(phraseBag);
+
+    const cinna = document.getElementById('cinnamonroll');
+    if (cinna) {
+        cinna.addEventListener('click', playNextPhrase);
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isShowingVideo) {
             closeVideoPopup();
