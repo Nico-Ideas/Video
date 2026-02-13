@@ -7,11 +7,13 @@
 let video;
 let canvas;
 let sadVideo;
+let cinnaAudio;
 let sadnessTimeout = null;
 let isShowingVideo = false;
 let isShowingCinnamonroll = false;
 let detectionInterval = null;
 let isCameraActive = false;
+let isMusicPlaying = false;
 let happyFrames = 0;
 let smileFrames = 0;
 let noSmileFrames = 0;
@@ -23,6 +25,7 @@ async function init() {
     video = document.getElementById('camera-feed');
     canvas = document.getElementById('overlay-canvas');
     sadVideo = document.getElementById('sad-video');
+    cinnaAudio = document.getElementById('cinna-audio');
 
     const statusEl = document.getElementById('camera-status');
     statusEl.textContent = 'Cargando modelos de IA...';
@@ -313,5 +316,19 @@ function toggleCamera() {
         stopCamera();
     } else {
         init();
+    }
+}
+
+function toggleMusic() {
+    const btnMusic = document.getElementById('btn-music');
+    
+    if (isMusicPlaying) {
+        cinnaAudio.pause();
+        isMusicPlaying = false;
+        btnMusic.textContent = '🎵 Música';
+    } else {
+        cinnaAudio.play().catch(e => console.warn('No se pudo reproducir audio:', e));
+        isMusicPlaying = true;
+        btnMusic.textContent = '🔊 Música (Sonando)';
     }
 }
