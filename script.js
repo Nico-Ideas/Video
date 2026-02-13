@@ -11,6 +11,7 @@ let sadnessTimeout = null;
 let isShowingVideo = false;
 let isShowingCinnamonroll = false;
 let detectionInterval = null;
+let isCameraActive = false;
 let happyFrames = 0;
 let smileFrames = 0;
 let noSmileFrames = 0;
@@ -78,6 +79,10 @@ async function startCamera() {
 
         statusEl.textContent = 'Cámara activa - Detectando emociones...';
         statusEl.style.color = '#8fefab';
+        
+        isCameraActive = true;
+        const btnCamera = document.getElementById('btn-camera');
+        if (btnCamera) btnCamera.textContent = '📹 Cámara (Activa)';
 
         // Iniciar detección cada 500ms
         detectionInterval = setInterval(detectEmotion, 500);
@@ -273,5 +278,40 @@ function testSad() {
         showVideoPopup();
     } else {
         closeVideoPopup();
+    }
+}
+
+function stopCamera() {
+    const statusEl = document.getElementById('camera-status');
+    const btnCamera = document.getElementById('btn-camera');
+    
+    // Pausar video
+    if (video && video.srcObject) {
+        video.srcObject.getTracks().forEach(track => track.stop());
+        video.pause();
+    }
+    
+    // Cancelar detección
+    if (detectionInterval) {
+        clearInterval(detectionInterval);
+        detectionInterval = null;
+    }
+    
+    // Resetear estados
+    isCameraActive = false;
+    hideCinnamonroll();
+    closeVideoPopup();
+    
+    // Actualizar UI
+    statusEl.textContent = 'Cámara desactivada';
+    statusEl.style.color = '#888';
+    if (btnCamera) btnCamera.textContent = '📹 Cámara';
+}
+
+function toggleCamera() {
+    if (isCameraActive) {
+        stopCamera();
+    } else {
+        init();
     }
 }
