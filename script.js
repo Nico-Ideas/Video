@@ -318,6 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cinna.addEventListener('click', playNextPhrase);
     }
 
+    const closeMeme = document.getElementById('close-meme');
+    if (closeMeme) {
+        closeMeme.addEventListener('click', () => {
+            if (isShowingVideo) closeVideoPopup();
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isShowingVideo) {
             closeVideoPopup();
