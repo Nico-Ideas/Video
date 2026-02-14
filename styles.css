@@ -1,4 +1,10 @@
+html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
+    position: relative;
     height: 100vh;
     width: 100vw;
     background:
@@ -53,6 +59,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    transform-origin: center center;
 }
 
 .page-greeting {
@@ -1159,8 +1166,12 @@ body {
     }
 
     .container {
-        max-width: 100vw;
-        transform: translate(-50%, -50%) scale(0.7);
+        position: absolute;
+        max-width: 95vw;
+        left: 29%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+        transform-origin: center center;
     }
 
     .page-greeting {
@@ -1256,8 +1267,12 @@ body {
     }
 
     .container {
-        max-width: 100vw;
-        transform: translate(-50%, -50%) scale(0.48);
+        position: absolute;
+        max-width: 95vw;
+        left: 27%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.38);
+        transform-origin: center center;
     }
 
     .page-greeting {
@@ -1384,8 +1399,12 @@ body {
     }
 
     .container {
-        max-width: 100vw;
-        transform: translate(-50%, -50%) scale(0.42);
+        position: absolute;
+        max-width: 95vw;
+        left: 25%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.33);
+        transform-origin: center center;
     }
 
     .page-greeting {
@@ -1454,7 +1473,12 @@ body {
     }
 
     .container {
-        transform: translate(-50%, -50%) scale(0.55);
+        position: absolute;
+        max-width: 95vw;
+        left: 29%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.42);
+        transform-origin: center center;
     }
 
     /* Glass y flores mantienen proporciones originales por scaling del container */
