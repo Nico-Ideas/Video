@@ -326,6 +326,34 @@ document.addEventListener('DOMContentLoaded', () => {
         cinnaCanvas.addEventListener('pointerdown', playNextPhrase);
     }
 
+    // Menú hamburguesa
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const testButtonsMenu = document.getElementById('test-buttons-menu');
+    if (hamburgerBtn && testButtonsMenu) {
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburgerBtn.classList.toggle('active');
+            testButtonsMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer click fuera
+        document.addEventListener('click', (e) => {
+            if (!testButtonsMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                hamburgerBtn.classList.remove('active');
+                testButtonsMenu.classList.remove('active');
+            }
+        });
+
+        // Cerrar menú al hacer click en un botón
+        const menuButtons = testButtonsMenu.querySelectorAll('button');
+        menuButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                testButtonsMenu.classList.remove('active');
+            });
+        });
+    }
+
     const welcomePopup = document.getElementById('welcome-popup');
     const closeWelcome = document.getElementById('close-welcome');
     if (welcomePopup) {

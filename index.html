@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>CinnamoRoll</title>
     <link rel="icon" type="image/png" href="assets/Cinamon.png">
@@ -116,7 +117,12 @@
     <audio id="cinna-audio" src="assets/Cinamon_Cancion.mp3" loop></audio>
 
     <!-- Botones de control -->
-    <div class="test-buttons">
+    <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="test-buttons" id="test-buttons-menu">
         <button id="btn-camera" onclick="toggleCamera()">📹 Cámara</button>
         <button id="btn-happy" onclick="testHappy()">😊 Felicidad</button>
         <button id="btn-sad" onclick="testSad()">😢 Tristeza</button>
@@ -134,6 +140,7 @@
             </p>
             <p class="welcome-text">Como funciona:</p>
             <ul class="welcome-list">
+                <li>Funciona mejor al abrir el link en la PC.</li>
                 <li>Activa la camara con el boton.</li>
                 <li>Si sonries, aparece Cinnamoroll.</li>
                 <li>Si estas triste, aparece un video para animarte.</li>
