@@ -17,6 +17,31 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.page-greeting {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 22px;
+    color: #f7dbe6;
+    font-family: 'Georgia', serif;
+    font-size: clamp(16px, 2.4vw, 22px);
+    letter-spacing: 1.2px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 15% 30%, rgba(255, 210, 230, 0.18), transparent 45%),
+        radial-gradient(circle at 85% 70%, rgba(255, 190, 220, 0.16), transparent 50%),
+        linear-gradient(135deg, rgba(120, 40, 70, 0.82), rgba(40, 15, 30, 0.92));
+    border: 1px solid rgba(240, 170, 190, 0.32);
+    border-radius: 18px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 230, 240, 0.18),
+        0 10px 24px rgba(30, 8, 18, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 60;
+    width: min(90vw, 520px);
+}
+
 .glass {
     height: 780px;
     width: 860px;
