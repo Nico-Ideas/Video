@@ -26,11 +26,11 @@ const SMILE_FRAMES_NEEDED = 3; // ~1.5s para mostrar Cinnamonroll
 const NO_SMILE_FRAMES_NEEDED = 6; // ~3s para ocultar Cinnamonroll
 
 const phraseFiles = [
-    'assets/Frases/Frase_1.mp3',
-    'assets/Frases/Frase_2.mp3',
-    'assets/Frases/Frase_3.mp3',
-    'assets/Frases/Frase_4.mp3',
-    'assets/Frases/Frase_5.mp3'
+    'assets/frases/Frase_1.mp3',
+    'assets/frases/Frase_2.mp3',
+    'assets/frases/Frase_3.mp3',
+    'assets/frases/Frase_4.mp3',
+    'assets/frases/Frase_5.mp3'
 ];
 
 async function init() {
