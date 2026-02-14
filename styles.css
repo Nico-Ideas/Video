@@ -750,6 +750,104 @@ body {
     outline-offset: 2px;
 }
 
+/* ========================================
+   POPUP BIENVENIDA
+   ======================================== */
+.welcome-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 10, 0.86);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.welcome-popup.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.welcome-popup-content {
+    background: linear-gradient(135deg, #1a1225 0%, #2a1736 100%);
+    border: 2px solid rgba(220, 120, 170, 0.45);
+    border-radius: 26px;
+    padding: 34px 40px 30px;
+    max-width: 520px;
+    width: 92%;
+    text-align: left;
+    box-shadow: 0 24px 70px rgba(180, 40, 80, 0.35);
+    animation: popupBounce 0.5s ease;
+    position: relative;
+}
+
+.welcome-title {
+    color: #f5d0e0;
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    margin: 0 0 12px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.welcome-text {
+    color: rgba(240, 210, 225, 0.9);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0 0 10px;
+    letter-spacing: 0.4px;
+}
+
+.welcome-list {
+    margin: 0;
+    padding-left: 18px;
+    color: rgba(240, 210, 225, 0.9);
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    line-height: 1.45;
+    letter-spacing: 0.4px;
+}
+
+.welcome-list li {
+    margin: 6px 0;
+}
+
+.welcome-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(240, 170, 190, 0.35);
+    background: rgba(30, 12, 22, 0.85);
+    color: #f5d0e0;
+    font-size: 20px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(20, 5, 10, 0.45);
+}
+
+.welcome-close:hover {
+    background: rgba(60, 20, 40, 0.95);
+    transform: scale(1.05);
+}
+
+.welcome-close:focus-visible {
+    outline: 2px solid rgba(240, 170, 190, 0.7);
+    outline-offset: 2px;
+}
+
 #meme-image {
     display: none;
 }
@@ -816,6 +914,7 @@ body {
     width: 100%;
     height: auto;
     filter: drop-shadow(0 6px 18px rgba(255, 150, 180, 0.35));
+    cursor: pointer;
 }
 
 @keyframes cinnaFloat {

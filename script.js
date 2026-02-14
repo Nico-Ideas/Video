@@ -292,6 +292,7 @@ function getNextPhraseIndex() {
 }
 
 function playNextPhrase() {
+    if (!isShowingCinnamonroll) return;
     const nextIndex = getNextPhraseIndex();
     const nextSrc = phraseFiles[nextIndex];
 
@@ -316,6 +317,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const cinna = document.getElementById('cinnamonroll');
     if (cinna) {
         cinna.addEventListener('click', playNextPhrase);
+        cinna.addEventListener('pointerdown', playNextPhrase);
+    }
+
+    const cinnaCanvas = document.getElementById('cinna-canvas');
+    if (cinnaCanvas) {
+        cinnaCanvas.addEventListener('click', playNextPhrase);
+        cinnaCanvas.addEventListener('pointerdown', playNextPhrase);
+    }
+
+    const welcomePopup = document.getElementById('welcome-popup');
+    const closeWelcome = document.getElementById('close-welcome');
+    if (welcomePopup) {
+        welcomePopup.classList.add('show');
+    }
+    if (closeWelcome && welcomePopup) {
+        closeWelcome.addEventListener('click', () => {
+            welcomePopup.classList.remove('show');
+        });
     }
 
     const closeMeme = document.getElementById('close-meme');
@@ -328,6 +347,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isShowingVideo) {
             closeVideoPopup();
+        }
+        if (e.key === 'Escape' && welcomePopup && welcomePopup.classList.contains('show')) {
+            welcomePopup.classList.remove('show');
         }
     });
 
