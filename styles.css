@@ -10,6 +10,44 @@ body {
     padding: 0;
 }
 
+.falling-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.falling-stars span {
+    position: absolute;
+    top: -12vh;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle at 30% 30%, #ffe1ee, rgba(255, 170, 200, 0.15) 70%);
+    border-radius: 50%;
+    box-shadow:
+        0 0 8px rgba(255, 180, 210, 0.7),
+        0 0 18px rgba(255, 140, 190, 0.45);
+    opacity: 0.85;
+    animation: starFall var(--duration) linear infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes starFall {
+    0% {
+        transform: translate3d(0, -10vh, 0) scale(0.9);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate3d(0, 120vh, 0) scale(1.1);
+        opacity: 0.15;
+    }
+}
+
 .container {
     position: absolute;
     left: 50%;
